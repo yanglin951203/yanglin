@@ -1,5 +1,5 @@
 package com.zb.entity;
-
+//实体类 杨林御笔
 import java.io.Serializable;
 
 public class Comment implements Serializable {
