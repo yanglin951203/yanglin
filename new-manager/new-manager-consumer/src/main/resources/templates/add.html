@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script type="text/javascript" src="/static/js/jquery-1.8.3.js"></script>
+       <script type="text/javascript">
+           $(function(){
+               alert("aa");
+               $('#btu').click(function(){
+                   alert('111');
+                   var content=$('#content').val();
+                   var  author=$('#author').val();
+                   var param={'content':content,'author':author}
+                   $.ajax({
+                    url:'/add',
+                    data:param,
+                    type:'post',
+                    success:function(result){
+                        alert(result);
+                    }
+
+
+
+                   })
+
+               })
+
+
+           })
+
+       </script>
+
+
+</head>
+<body>
+
+<table>
+    <tr>
+       <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td>评论内容</td>
+        <td><input type="text" id="content"/> </td>
+    </tr>
+    <tr>
+       <td>评论人</td>
+        <td><input type="text" id="author"/></td>
+    </tr>
+    <input type="button" id="btu" value="提交"/>
+</table>
+
+</body>
+</html>

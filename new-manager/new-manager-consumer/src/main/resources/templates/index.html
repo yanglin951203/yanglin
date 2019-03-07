@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script type="text/javascript" src="/static/js/jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        $(function(){
+
+           $.ajax({
+               url:'/show',
+               type:'post',
+               success:function(result){
+                   alert(result);
+                   var html='';
+                   for(var i=0;result.length>i;i++){
+                       var d=result[i];
+                       html+='<tr><td>'+d.id+'</td><td>'+d.title+'</td><td>'+d.summary+'</td><td>'+d.author+'</td><td>'+d.createDate+'</td><td><a href="javascript:del('+d.id+')" id="'+d.id+'">删除</a></td><td><a href="/toadd/?id='+d.id+'">评论</a></td></tr>';
+                   }
+                   $('tbody').html(html);
+               }
+           })
+        })
+        function del(id){
+            var param={'id':id};
+          $.ajax({
+              url:'/del',
+              data:param,
+              type:'post',
+              success:function(result){
+                  alert(result);
+                  if(result=="ok"){
+                      $('#'+id).parent().parent().remove();
+                  }
+              }
+          })
+
+        }
+
+
+    </script>
+</head>
+<body>
+<table border="1">
+    <thead></thead>
+    <tbody></tbody>
+</table>
+</body>
+</html>
